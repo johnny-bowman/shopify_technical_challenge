@@ -4,7 +4,7 @@ RSpec.describe "Items show page" do
   before :all do
     @wh_1 = Warehouse.create!(address: "123 Fake St", city: "Arlington", state: "VA", country: "USA", postal_code: "50890")
 
-    @cup = @wh_1.items.create!(name: "Cup", description: "Have liquids? Want to consume them? BOY will this help you out.", unit_price: 1000)
+    @cup = @wh_1.items.create!(name: "Cup", description: "Have liquids? Want to consume them? BOY will this help you out.", unit_price: 10.00)
   end
 
   before :each do
@@ -20,7 +20,7 @@ RSpec.describe "Items show page" do
   it "lists item name, description, and unit price" do
     expect(page).to have_content(@cup.name)
     expect(page).to have_content(@cup.description)
-    expect(page).to have_content(@cup.unit_price)
+    expect(page).to have_content("$10.00")
   end
 
   it "has link to edit item" do
