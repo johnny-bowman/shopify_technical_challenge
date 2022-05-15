@@ -1,0 +1,8 @@
+<h1>Item Index</h1>
+<ul>
+  <% @items.each do |item| %>
+    <li><%= item.name %></li>
+    <p><strong>Description: </strong><%= item.description %></p>
+    <p><strong>Unit Price: </strong><%= item.unit_price %></p>
+  <% end %>
+</ul>
