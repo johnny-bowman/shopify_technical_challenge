@@ -22,4 +22,10 @@ RSpec.describe "Items show page" do
     expect(page).to have_content(@cup.description)
     expect(page).to have_content(@cup.unit_price)
   end
+
+  it "has link to edit item" do
+    click_link "Edit Item"
+    
+    expect(current_path).to eq("/items/#{@cup.id}/edit")
+  end
 end
