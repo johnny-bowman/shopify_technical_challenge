@@ -9,7 +9,9 @@ RSpec.describe "Items index page" do
     @plate = @wh_1.items.create!(name: "Plate", description: "Let me know how you're going to serve that quinoa burrito without this thing.", unit_price: 1500)
     @bowl = @wh_2.items.create!(name: "Bowl", description: "You're not actually gonna serve your chili on a plate are you? You deserve this.", unit_price: 2000)
     @mug = @wh_2.items.create!(name: "Mug", description: "I know a bunch of people from highschool are making these as a hobby but they do actually have some utility.", unit_price: 2500)
+  end
 
+  before :each do
     visit "/items"
   end
 
@@ -23,5 +25,13 @@ RSpec.describe "Items index page" do
     expect(@bowl.name).to appear_before(@cup.name)
     expect(@cup.name).to appear_before(@mug.name)
     expect(@mug.name).to appear_before(@plate.name)
+  end
+
+  it "links to item show pages" do
+    within("##{@bowl.id}") do
+      click_link "#{@bowl.name}"
+    end
+
+    expect(current_path).to eq("/items/#{@bowl.id}")
   end
 end
