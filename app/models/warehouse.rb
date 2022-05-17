@@ -7,4 +7,8 @@ class Warehouse < ApplicationRecord
 
   has_many :item_warehouses
   has_many :items, through: :item_warehouses
+
+  def self.search_by_location(search_params)
+    find_by_sql("SELECT * FROM warehouses WHERE address = '#{search_params}' OR city = '#{search_params}' OR state = '#{search_params}' OR country = '#{search_params}' OR postal_code = '#{search_params}'")
+  end
 end
