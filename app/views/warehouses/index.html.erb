@@ -1,0 +1,27 @@
+<h1>Warehouses</h1>
+<%= form_with url: warehouses_path, method: :get, local: true do |f|%>
+  <%= f.label :search, "Search By Location" %>
+  <%= text_field_tag(:search, params[:search])  %>
+  <%= f.submit "Search" %>
+<% end %>
+
+<ul>
+  <% @warehouses.each do |warehouse| %>
+    <div id=<%= warehouse.id %>>
+      <li><strong>Address: </strong><%= warehouse.address %></li>
+
+      <p><strong>City: </strong><%= warehouse.city %></p>
+
+      <p><strong>State: </strong><%= warehouse.state %></p>
+
+      <p><strong>Country: </strong><%= warehouse.country %></p>
+
+      <p><strong>Postal Code: </strong><%= warehouse.postal_code %></p>
+
+      <%= button_to "View This Warehouse", "/warehouses/#{warehouse.id}", method: :get, local: true %>
+      <br>
+    </div>
+  <% end %>
+</ul>
+
+<%= button_to "Create New Warehouse", "/warehouses/new", method: :get, local: true%>
