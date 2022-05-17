@@ -27,4 +27,12 @@ RSpec.describe "Warehouse index page" do
     expect(page).to_not have_content("Richmond")
     expect(page).to have_content("Arlington")
   end
+
+  it "links to warehouse show page" do
+  within("##{@wh_1.id}") do
+    click_button "View This Warehouse"
+  end
+
+  expect(current_path).to eq("/warehouses/#{@wh_1.id}")
+end
 end
