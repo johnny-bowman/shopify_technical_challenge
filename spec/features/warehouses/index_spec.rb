@@ -29,10 +29,16 @@ RSpec.describe "Warehouse index page" do
   end
 
   it "links to warehouse show page" do
-  within("##{@wh_1.id}") do
-    click_button "View This Warehouse"
+    within("##{@wh_1.id}") do
+      click_button "View This Warehouse"
+    end
+
+    expect(current_path).to eq("/warehouses/#{@wh_1.id}")
   end
 
-  expect(current_path).to eq("/warehouses/#{@wh_1.id}")
-end
+  it "has button to create new warehouse" do
+    click_button "Create New Warehouse"
+
+    expect(current_path).to eq("/warehouses/new")
+  end
 end
