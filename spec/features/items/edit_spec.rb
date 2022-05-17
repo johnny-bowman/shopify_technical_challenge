@@ -15,7 +15,7 @@ RSpec.describe "Item edit page" do
 
   it "updates item info" do
     visit "/items/#{@cup.id}"
-    
+
     expect(page).to have_content(@cup.name)
     expect(page).to have_content(@cup.description)
     expect(page).to have_content("$10.05")
@@ -25,10 +25,10 @@ RSpec.describe "Item edit page" do
     expect(page).to_not have_content("$5.00")
 
     click_link("Edit Item")
-
+  
     fill_in "Name:", with: "Straw"
     fill_in "Description:", with: "Got liquids to drink but don't love the way your cup tastes? This is for you."
-    fill_in "Unit Price:", with: "5.00"
+    fill_in "Unit Price:", with: "abc"
     click_button "Update Item"
 
     expect(current_path).to eq("/items/#{@cup.id}")
