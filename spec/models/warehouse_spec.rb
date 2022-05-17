@@ -21,10 +21,10 @@ RSpec.describe Warehouse, type: :model do
     end
 
     it "finds warehouses by location" do
-      expect(Warehouse.search("Arlington")).to eq([@wh_1])
-      expect(Warehouse.search("123 Fake St")).to eq([@wh_1])
-      expect(Warehouse.search("USA")).to eq([@wh_1, @wh_2])
-      expect(Warehouse.search("Richmond")).to eq([@wh_2])
+      expect(Warehouse.search_by_location("Arlington")).to eq([@wh_1])
+      expect(Warehouse.search_by_location("123 Fake St")).to eq([@wh_1])
+      expect(Warehouse.search_by_location("USA")).to eq([@wh_1, @wh_2])
+      expect(Warehouse.search_by_location("Richmond")).to eq([@wh_2])
     end
   end
 end
