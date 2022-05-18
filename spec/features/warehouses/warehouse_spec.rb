@@ -24,4 +24,10 @@ RSpec.describe "Warehouse show page" do
     expect(page).to have_content(@wh.country)
     expect(page).to have_content(@wh.postal_code)
   end
+
+  it "has link to warehouse index" do
+    click_link "All Warehouses"
+
+    expect(current_path).to eq("/warehouses")
+  end
 end
