@@ -1,0 +1,7 @@
+<%= render "layouts/to_item_index" %>
+
+<h2><%= @item.name %></h2>
+<p><strong>Description: </strong><%= @item.description %></p>
+<p><strong>Unit Price: </strong><%= number_to_currency(@item.unit_price) %></p>
+
+<%= link_to "Edit Item", "/items/#{@item.id}/edit", method: :get, local: true %>
