@@ -21,7 +21,7 @@ class WarehousesController < ApplicationController
       redirect_to "/warehouses/#{@warehouse.id}"
     else
       redirect_to "/warehouses/new"
-      
+
       flash[:error] = @warehouse.errors.full_messages
     end
   end
@@ -32,6 +32,7 @@ class WarehousesController < ApplicationController
 
     redirect_to "/warehouses"
   end
+  
   private
 
   def warehouse_params
