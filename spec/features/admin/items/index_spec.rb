@@ -21,14 +21,13 @@ RSpec.describe "Admin items index page" do
 
   it "has button to add item to warehouse inventory" do
     visit "/warehouses/#{@wh_1.id}"
-    save_and_open_page
     expect(page).to_not have_content(@mug.name)
 
     visit "/admin/items?id=#{@wh_1.id}"
     within("##{@mug.id}") do
       click_button "Add Item to Warehouse at #{@wh_1.address}, #{@wh_1.city}, #{@wh_1.state}"
     end
-    save_and_open_page
+
     expect(current_path).to eq("/warehouses/#{@wh_1.id}")
     expect(page).to have_content(@mug.name)
   end
