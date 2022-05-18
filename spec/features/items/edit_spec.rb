@@ -24,8 +24,8 @@ RSpec.describe "Item edit page" do
     expect(page).to_not have_content("Got liquids to drink but don't love the way your cup tastes? This is for you.")
     expect(page).to_not have_content("$5.00")
 
-    click_link("Edit Item")
-  
+    click_button("Edit Item")
+
     fill_in "Name:", with: "Straw"
     fill_in "Description:", with: "Got liquids to drink but don't love the way your cup tastes? This is for you."
     fill_in "Unit Price:", with: "abc"

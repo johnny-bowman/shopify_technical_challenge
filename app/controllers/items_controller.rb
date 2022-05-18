@@ -27,6 +27,13 @@ class ItemsController < ApplicationController
   def new
   end
 
+  def destroy
+    ItemWarehouse.where(item_id: params[:id]).destroy_all
+    Item.find(params[:id]).destroy
+
+    redirect_to "/items"
+  end
+
   def create
     @item = Item.new(item_params)
 

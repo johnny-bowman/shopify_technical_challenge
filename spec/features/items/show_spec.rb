@@ -24,7 +24,7 @@ RSpec.describe "Items show page" do
   end
 
   it "has link to edit item" do
-    click_link "Edit Item"
+    click_button "Edit Item"
 
     expect(current_path).to eq("/items/#{@cup.id}/edit")
   end

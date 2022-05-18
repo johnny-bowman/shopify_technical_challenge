@@ -4,4 +4,6 @@
 <p><strong>Description: </strong><%= @item.description %></p>
 <p><strong>Unit Price: </strong><%= number_to_currency(@item.unit_price) %></p>
 
-<%= link_to "Edit Item", "/items/#{@item.id}/edit", method: :get, local: true %>
+<%= button_to "Edit Item", "/items/#{@item.id}/edit", method: :get, local: true %>
+<br>
+<%= button_to "Delete Item", "/items/#{@item.id}", method: :delete, local: true %>
