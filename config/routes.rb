@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :warehouses
 
   namespace :admin do
-    get "/items", to: "items#index"
+    resources :items, only: [:index]
+    resources :item_warehouses, only: [:create]
   end
 end
