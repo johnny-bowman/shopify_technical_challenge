@@ -25,6 +25,12 @@ class WarehousesController < ApplicationController
     end
   end
 
+  def destroy
+    ItemWarehouse.where(warehouse_id: params[:id]).destroy_all
+    Warehouse.find(params[:id]).destroy
+
+    redirect_to "/warehouses"
+  end
   private
 
   def warehouse_params

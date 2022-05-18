@@ -3,3 +3,5 @@
 <%= render "layouts/to_warehouse_index" %>
 
 <h2>Warehouse At: <%= @warehouse.address %>, <%= @warehouse.city %>, <%= @warehouse.state %> <%= @warehouse.postal_code %>, <%= @warehouse.country %>, </h2>
+
+<%= button_to "Delete Warehouse", "/warehouses/#{@warehouse.id}", method: :delete, local: true %>

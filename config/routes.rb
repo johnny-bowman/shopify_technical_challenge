@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   # patch "/items/:id", to: "items#update"
   resources :items
 
-  resources :warehouses, only: [:index, :show, :new, :create]
+  resources :warehouses
 
 end
