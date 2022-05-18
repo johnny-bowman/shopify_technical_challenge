@@ -30,12 +30,11 @@ RSpec.describe Warehouse, type: :model do
 
   describe "instance methods" do
     it "returns quantity of items in inventory" do
-      @cup = @wh_1.items.create!(name: "Cup", description: "Have liquids? Want to consume them? BOY will this help you out.", unit_price: 10.00)
-      @plate = @wh_1.items.create!(name: "Plate", description: "Let me know how you're going to serve that quinoa burrito without this thing.", unit_price: 15.00)
+      @cup = Item.create!(name: "Cup", description: "Have liquids? Want to consume them? BOY will this help you out.", unit_price: 10.00)
+      @plate = Item.create!(name: "Plate", description: "Let me know how you're going to serve that quinoa burrito without this thing.", unit_price: 15.00)
 
-      ItemWarehouse.create!(item_id: @cup.id, warehouse_id: @wh_1.id)
-      ItemWarehouse.create!(item_id: @plate.id, warehouse_id: @wh_1.id)
-      ItemWarehouse.create!(item_id: @plate.id, warehouse_id: @wh_1.id)
+      ItemWarehouse.create!(item_id: @cup.id, warehouse_id: @wh_1.id, quantity: 2)
+      ItemWarehouse.create!(item_id: @plate.id, warehouse_id: @wh_1.id, quantity: 3)
 
       expect(@wh_1.item_quantity(@cup.id)).to eq(2)
       expect(@wh_1.item_quantity(@plate.id)).to eq(3)

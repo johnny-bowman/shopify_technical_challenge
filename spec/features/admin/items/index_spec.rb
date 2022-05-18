@@ -24,9 +24,17 @@ RSpec.describe "Admin items index page" do
       fill_in :quantity, with: "4"
       click_button "Add to Warehouse at #{@wh_1.address}, #{@wh_1.city}, #{@wh_1.state}"
     end
-    
+
     expect(current_path).to eq("/warehouses/#{@wh_1.id}")
     expect(page).to have_content(@mug.name)
     expect(page).to have_content("Quantity in Stock: 4")
+
+    visit "/admin/items?id=#{@wh_1.id}"
+    within("##{@mug.id}") do
+      fill_in :quantity, with: "1"
+      click_button "Add to Warehouse at #{@wh_1.address}, #{@wh_1.city}, #{@wh_1.state}"
+    end
+    
+    expect(page).to have_content("Quantity in Stock: 5")
   end
 end
