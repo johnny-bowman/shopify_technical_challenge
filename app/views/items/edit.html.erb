@@ -8,7 +8,7 @@
 <br>
 <%= form_with url: "/items/#{@item.id}", method: :patch, local: true do |f| %>
   <strong><%= f.label :name, "Name:" %></strong>
-  <%= f.text_field :name, value: @item.name %>
+  <%= f.text_field :name, style: 'text-transform: capitalize;', value: @item.name %>
   <br><br>
 
   <strong><%= f.label :description,"Description:" %></strong>

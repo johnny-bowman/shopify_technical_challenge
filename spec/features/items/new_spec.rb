@@ -21,10 +21,10 @@ RSpec.describe "Items new page" do
 
   it "flashes errors when form is filled out incorrectly" do
     visit "/items/new"
-    
-    fill_in "Name", with: ""
-    fill_in "Description", with: ""
-    fill_in "Unit price", with: ""
+
+    fill_in :name, with: ""
+    fill_in :description, with: ""
+    fill_in :unit_price, with: ""
     click_button "Create Item"
 
     expect(current_path).to eq("/items/new")
