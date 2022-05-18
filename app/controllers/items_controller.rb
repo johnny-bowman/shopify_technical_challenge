@@ -28,13 +28,6 @@ class ItemsController < ApplicationController
   def new
   end
 
-  def destroy
-    ItemWarehouse.where(item_id: params[:id]).destroy_all
-    Item.find(params[:id]).destroy
-
-    redirect_to "/items"
-  end
-
   def create
     @item = Item.new(item_params)
 
@@ -44,6 +37,13 @@ class ItemsController < ApplicationController
       redirect_to "/items/new"
       flash[:error] = @item.errors.full_messages
     end
+  end
+
+  def destroy
+    ItemWarehouse.where(item_id: params[:id]).destroy_all
+    Item.find(params[:id]).destroy
+
+    redirect_to "/items"
   end
 
   private
