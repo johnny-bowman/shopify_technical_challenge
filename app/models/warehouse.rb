@@ -13,6 +13,6 @@ class Warehouse < ApplicationRecord
   end
 
   def item_quantity(item_id)
-    ItemWarehouse.where(item_id: item_id).first.quantity
+    ItemWarehouse.where(item_id: item_id, warehouse_id: self.id).first.quantity
   end
 end
