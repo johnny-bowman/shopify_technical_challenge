@@ -52,7 +52,7 @@ RSpec.describe "Warehouse show page" do
   end
 
   it "has a button leading to /admin/items/index" do
-    click_link "Add Item to Inventory"
+    click_link "Add Items to Warehouse Inventory"
 
     expect(current_path).to eq("/admin/items")
   end

@@ -9,10 +9,6 @@ RSpec.describe "Admin items index page" do
     @mug = Item.create!(name: "Mug", description: "I know a bunch of people from highschool are making these as a hobby but they do actually have some utility.", unit_price: 25.00)
   end
 
-  before :each do
-    visit "/admin/items?id=#{@wh_1.id}"
-  end
-
   after :all do
     ItemWarehouse.destroy_all
     Item.destroy_all
@@ -25,10 +21,12 @@ RSpec.describe "Admin items index page" do
 
     visit "/admin/items?id=#{@wh_1.id}"
     within("##{@mug.id}") do
-      click_button "Add Item to Warehouse at #{@wh_1.address}, #{@wh_1.city}, #{@wh_1.state}"
+      fill_in :quantity, with: "4"
+      click_button "Add to Warehouse at #{@wh_1.address}, #{@wh_1.city}, #{@wh_1.state}"
     end
-
+    
     expect(current_path).to eq("/warehouses/#{@wh_1.id}")
     expect(page).to have_content(@mug.name)
+    expect(page).to have_content("Quantity in Stock: 4")
   end
 end
