@@ -1,4 +1,7 @@
 <h1>Warehouses</h1>
+
+<%= button_to "Create New Warehouse", "/warehouses/new", method: :get, local: true%>
+<br>
 <%= form_with url: warehouses_path, method: :get, local: true do |f|%>
   <%= f.label :search, "Search By Location" %>
   <%= text_field_tag(:search, params[:search])  %>
@@ -23,5 +26,3 @@
     </div>
   <% end %>
 </ul>
-
-<%= button_to "Create New Warehouse", "/warehouses/new", method: :get, local: true%>

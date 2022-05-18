@@ -1,4 +1,8 @@
 <h1>Item Index</h1>
+
+<%= button_to "Create New Item", "/items/new", method: :get, local: true%>
+<br>
+
 <ul>
   <% @items.each do |item| %>
     <div id=<%= item.id %>>
