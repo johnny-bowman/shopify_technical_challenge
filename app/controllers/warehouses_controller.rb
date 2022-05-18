@@ -32,7 +32,7 @@ class WarehousesController < ApplicationController
 
     redirect_to "/warehouses"
   end
-  
+
   private
 
   def warehouse_params

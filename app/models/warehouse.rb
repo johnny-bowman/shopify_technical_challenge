@@ -9,7 +9,7 @@ class Warehouse < ApplicationRecord
   has_many :items, through: :item_warehouses
 
   def self.search_by_location(search_params)
-    find_by_sql("SELECT * FROM warehouses WHERE address = '#{search_params}' OR city = '#{search_params}' OR state = '#{search_params}' OR country = '#{search_params}' OR postal_code = '#{search_params}'")
+    find_by_sql("SELECT * FROM warehouses WHERE LOWER(address) = '#{search_params.downcase}' OR LOWER(city) = '#{search_params.downcase}' OR LOWER(state) = '#{search_params.downcase}' OR LOWER(country) = '#{search_params.downcase}' OR LOWER(postal_code) = '#{search_params.downcase}'")
   end
 
   def item_quantity(item_id)
