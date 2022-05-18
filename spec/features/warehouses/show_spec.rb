@@ -50,4 +50,10 @@ RSpec.describe "Warehouse show page" do
     expect(page).to have_content(@plate.name)
     expect(page).to_not have_content(@bowl.name)
   end
+
+  it "has a button leading to /admin/items/index" do
+    click_link "Add Item to Inventory"
+
+    expect(current_path).to eq("/admin/items")
+  end
 end
