@@ -12,7 +12,7 @@ RSpec.describe "Items index page" do
   end
 
   before :each do
-    visit "/items"
+    visit items_path
   end
 
   after :all do
@@ -25,6 +25,22 @@ RSpec.describe "Items index page" do
     expect(@bowl.name).to appear_before(@cup.name)
     expect(@cup.name).to appear_before(@mug.name)
     expect(@mug.name).to appear_before(@plate.name)
+  end
+
+  it "searches for items by name" do
+    expect(page).to have_content("Bowl")
+    expect(page).to have_content("Cup")
+    expect(page).to have_content("Mug")
+    expect(page).to have_content("Plate")
+
+    fill_in :search, with: "plATe"
+    click_button "Search"
+
+    expect(current_path).to eq(items_path)
+    expect(page).to_not have_content("Bowl")
+    expect(page).to_not have_content("Cup")
+    expect(page).to_not have_content("Mug")
+    expect(page).to have_content("Plate")
   end
 
   it "links to item show pages" do
