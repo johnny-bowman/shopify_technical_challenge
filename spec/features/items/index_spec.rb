@@ -34,4 +34,10 @@ RSpec.describe "Items index page" do
 
     expect(current_path).to eq("/items/#{@bowl.id}")
   end
+
+  it "has button to create new item" do
+    click_button "Create New Item"
+
+    expect(current_path).to eq("/items/new")
+  end
 end
