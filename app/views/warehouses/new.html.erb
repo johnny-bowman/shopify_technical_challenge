@@ -1,4 +1,4 @@
-<%= form_with url: "/warehouses", method: :post do |f| %>
+<%= form_with url: "/warehouses", method: :post, local: true do |f| %>
   <%= f.label :address %>
   <%= f.text_field :address %>
   <%= f.label :city %>
