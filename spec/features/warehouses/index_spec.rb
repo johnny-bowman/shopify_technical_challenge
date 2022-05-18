@@ -20,7 +20,7 @@ RSpec.describe "Warehouse index page" do
     expect(page).to have_content("Richmond")
     expect(page).to have_content("Arlington")
 
-    fill_in :search, with: "Arlington"
+    fill_in :search, with: "arlington"
     click_button "Search"
 
     expect(current_path).to eq(warehouses_path)
