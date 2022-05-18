@@ -18,4 +18,18 @@ RSpec.describe "Items new page" do
     visit "/items"
     expect(page).to have_content("Straw")
   end
+
+  it "flashes errors when form is filled out incorrectly" do
+    visit "/items/new"
+
+    fill_in :name, with: ""
+    fill_in :description, with: ""
+    fill_in :unit_price, with: ""
+    click_button "Create Item"
+
+    expect(current_path).to eq("/items/new")
+    expect(page).to have_content("Name can't be blank")
+    expect(page).to have_content("Description can't be blank")
+    expect(page).to have_content("Unit price can't be blank")
+  end
 end

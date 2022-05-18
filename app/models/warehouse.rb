@@ -11,4 +11,8 @@ class Warehouse < ApplicationRecord
   def self.search_by_location(search_params)
     find_by_sql("SELECT * FROM warehouses WHERE address = '#{search_params}' OR city = '#{search_params}' OR state = '#{search_params}' OR country = '#{search_params}' OR postal_code = '#{search_params}'")
   end
+
+  def item_quantity(item_id)
+    ItemWarehouse.where(item_id: item_id).count
+  end
 end

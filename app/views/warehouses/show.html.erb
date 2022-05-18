@@ -2,4 +2,32 @@
 <br>
 <%= render "layouts/to_warehouse_index" %>
 
-<h2>Warehouse At: <%= @warehouse.address %>, <%= @warehouse.city %>, <%= @warehouse.state %> <%= @warehouse.postal_code %>, <%= @warehouse.country %>, </h2>
+<h1>Warehouse At: <%= @warehouse.address %>, <%= @warehouse.city %>, <%= @warehouse.state %> <%= @warehouse.postal_code %>, <%= @warehouse.country %>, </h1>
+<br>
+
+<h2>Item Inventory: </h2>
+<% if !@warehouse.items.empty? %>
+  <div class="wh_items">
+    <ul>
+      <% @warehouse.items.distinct.each do |item| %>
+        <div id=<%= item.id %>>
+          <li><strong>Item Name: </strong><%= link_to item.name, "/items/#{item.id}", method: :get, local: true%></li>
+
+          <p><strong>Description: </strong><%= item.description %></p>
+
+          <p><strong>Unit Price: </strong><%= number_to_currency(item.unit_price)%></p>
+
+          <p><strong>Quantity in Stock: </strong><%= @warehouse.item_quantity(item.id) %></p>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+  <br>
+<% else %>
+  <p>No Items Currently in Inventory</p>
+<% end %>
+
+<%= link_to "Add Items to Warehouse Inventory", "/admin/items?id=#{@warehouse.id}", method: :get, local: true %>
+<br>
+<br>
+<%= button_to "Delete Warehouse", "/warehouses/#{@warehouse.id}", method: :delete, local: true %>

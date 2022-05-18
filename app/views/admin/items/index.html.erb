@@ -1,0 +1,21 @@
+<%= render "layouts/to_home" %>
+<h1>Item Index</h1>
+<br>
+<ul>
+  <% @items.each do |item| %>
+    <div id=<%= item.id %>>
+      <li><%= link_to item.name.capitalize, "/items/#{item.id}", method: :get, local: true%></li>
+
+      <p><strong>Description: </strong><%= item.description %></p>
+
+      <p><strong>Unit Price: </strong><%= number_to_currency(item.unit_price)%></p>
+
+      <p><strong>Add Item to Inventory:</strong></p>
+      <%= form_with url: "/admin/item_warehouses?item_id=#{item.id}&warehouse_id=#{@warehouse.id}", method: :post, local: true do |f| %>
+        <%= f.label :quantity, "Quantity to Add:" %>
+        <%= f.number_field :quantity, value: "1" %>
+        <%= f.submit "Add to Warehouse at #{@warehouse.address}, #{@warehouse.city}, #{@warehouse.state}" %>
+      <% end %>
+    </div>
+  <% end %>
+</ul>

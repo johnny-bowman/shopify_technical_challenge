@@ -1,7 +1,11 @@
+<%= render "layouts/to_home" %>
+<br>
 <%= render "layouts/to_item_index" %>
 
-<h2><%= @item.name %></h2>
+<h2><%= @item.name.capitalize %></h2>
 <p><strong>Description: </strong><%= @item.description %></p>
 <p><strong>Unit Price: </strong><%= number_to_currency(@item.unit_price) %></p>
 
-<%= link_to "Edit Item", "/items/#{@item.id}/edit", method: :get, local: true %>
+<%= button_to "Edit Item", "/items/#{@item.id}/edit", method: :get, local: true %>
+<br>
+<%= button_to "Delete Item", "/items/#{@item.id}", method: :delete, local: true %>

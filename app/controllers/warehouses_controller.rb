@@ -21,10 +21,18 @@ class WarehousesController < ApplicationController
       redirect_to "/warehouses/#{@warehouse.id}"
     else
       redirect_to "/warehouses/new"
-      flash[:alert] = "#{@warehouse.errors.full_messages.to_sentence}"
+
+      flash[:error] = @warehouse.errors.full_messages
     end
   end
 
+  def destroy
+    ItemWarehouse.where(warehouse_id: params[:id]).destroy_all
+    Warehouse.find(params[:id]).destroy
+
+    redirect_to "/warehouses"
+  end
+  
   private
 
   def warehouse_params

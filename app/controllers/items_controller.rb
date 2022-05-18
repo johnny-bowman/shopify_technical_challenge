@@ -20,7 +20,8 @@ class ItemsController < ApplicationController
       redirect_to "/items/#{@item.id}", alert: "#{@item.name} has been updated"
     else
       redirect_to "/items/#{@item.id}/edit"
-      flash[:alert] = "Error: #{error_message(@item.errors)}"
+
+      flash[:error] = @item.errors.full_messages
     end
   end
 
@@ -34,8 +35,15 @@ class ItemsController < ApplicationController
       redirect_to "/items/#{@item.id}"
     else
       redirect_to "/items/new"
-      flash[:alert] = "#{@item.errors.full_messages.to_sentence}"
+      flash[:error] = @item.errors.full_messages
     end
+  end
+
+  def destroy
+    ItemWarehouse.where(item_id: params[:id]).destroy_all
+    Item.find(params[:id]).destroy
+
+    redirect_to "/items"
   end
 
   private

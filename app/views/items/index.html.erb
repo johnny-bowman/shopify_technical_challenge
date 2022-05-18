@@ -1,3 +1,4 @@
+<%= render "layouts/to_home" %>
 <h1>Item Index</h1>
 
 <%= button_to "Create New Item", "/items/new", method: :get, local: true%>
@@ -6,11 +7,11 @@
 <ul>
   <% @items.each do |item| %>
     <div id=<%= item.id %>>
-      <li><%= link_to item.name, "/items/#{item.id}", method: :get, local: true%></li>
+      <li><%= link_to item.name.capitalize, "/items/#{item.id}", method: :get, local: true%></li>
 
       <p><strong>Description: </strong><%= item.description %></p>
 
-      <p><strong>Unit Price: </strong><%= item.unit_price %></p>
+      <p><strong>Unit Price: </strong><%= number_to_currency(item.unit_price)%></p>
     </div>
   <% end %>
 </ul>

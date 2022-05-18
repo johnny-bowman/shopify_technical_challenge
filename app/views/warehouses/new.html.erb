@@ -1,3 +1,10 @@
+<% if flash[:error] %>
+  <% flash[:error].each do |error| %>
+    <strong><%= error %></strong>
+    <br>
+  <% end %>
+<% end %>
+
 <%= form_with url: "/warehouses", method: :post, local: true do |f| %>
   <%= f.label :address %>
   <%= f.text_field :address %>
@@ -8,7 +15,7 @@
   <%= f.label :country %>
   <%= f.text_field :country %>
   <%= f.label :postal_code %>
-  <%= f.text_field :postal_code %>
+  <%= f.number_field :postal_code %>
 
   <%= f.submit "Create Warehouse" %>
 <% end %>

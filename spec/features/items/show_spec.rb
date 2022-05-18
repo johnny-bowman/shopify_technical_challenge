@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Items show page" do
+RSpec.describe "Item show page" do
   before :all do
     @wh_1 = Warehouse.create!(address: "123 Fake St", city: "Arlington", state: "VA", country: "USA", postal_code: "50890")
 
@@ -24,7 +24,7 @@ RSpec.describe "Items show page" do
   end
 
   it "has link to edit item" do
-    click_link "Edit Item"
+    click_button "Edit Item"
 
     expect(current_path).to eq("/items/#{@cup.id}/edit")
   end
@@ -33,5 +33,16 @@ RSpec.describe "Items show page" do
     click_link "All Items"
 
     expect(current_path).to eq("/items")
+  end
+
+  it "has button to delete item" do
+    visit "/items"
+    expect(page).to have_content("#{@cup.description}")
+
+    visit "/items/#{@cup.id}"
+    click_button "Delete Item"
+
+    expect(current_path).to eq("/items")
+    expect(page).to_not have_content("#{@cup.description}")
   end
 end
