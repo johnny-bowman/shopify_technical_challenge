@@ -27,6 +27,17 @@ class ItemsController < ApplicationController
   def new
   end
 
+  def create
+    @item = Item.new(item_params)
+
+    if @item.save
+      redirect_to "/items/#{@item.id}"
+    else
+      redirect_to "/items/new"
+      flash[:alert] = "#{@item.errors.full_messages.to_sentence}"
+    end
+  end
+
   private
 
   def item_params
