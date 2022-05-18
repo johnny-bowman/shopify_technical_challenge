@@ -1,6 +1,10 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.order("name ASC")
+    if params[:search]
+      @items = Item.search_by_name(params[:search])
+    else
+      @items = Item.order("name ASC")
+    end
   end
 
   def show

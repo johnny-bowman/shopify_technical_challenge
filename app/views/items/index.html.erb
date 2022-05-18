@@ -3,15 +3,24 @@
 
 <%= button_to "Create New Item", "/items/new", method: :get, local: true%>
 <br>
+<%= form_with url: items_path, method: :get, local: true do |f|%>
+  <%= f.label :search, "Search By Item Name" %>
+  <%= text_field_tag(:search, params[:search])  %>
+  <%= f.submit "Search" %>
+<% end %>
 
 <ul>
-  <% @items.each do |item| %>
+  <% if @items.empty? %>
+    <p>No Items in Iventory</p>
+  <% else %>
+    <% @items.each do |item| %>
     <div id=<%= item.id %>>
-      <li><%= link_to item.name.capitalize, "/items/#{item.id}", method: :get, local: true%></li>
+      <li><strong><%= link_to item.name.capitalize, "/items/#{item.id}", method: :get, local: true%></strong> <-- See Item Show Page</li>
 
       <p><strong>Description: </strong><%= item.description %></p>
 
       <p><strong>Unit Price: </strong><%= number_to_currency(item.unit_price)%></p>
     </div>
+    <% end %>
   <% end %>
 </ul>
