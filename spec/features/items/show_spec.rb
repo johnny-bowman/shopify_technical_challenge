@@ -34,4 +34,15 @@ RSpec.describe "Items show page" do
 
     expect(current_path).to eq("/items")
   end
+
+  it "has button to delete item" do
+    visit "/items"
+    expect(page).to have_content("#{@cup.description}")
+
+    visit "/items/#{@cup.id}"
+    click_button "Delete Item"
+
+    expect(current_path).to eq("/items")
+    expect(page).to_not have_content("#{@cup.description}")
+  end
 end
