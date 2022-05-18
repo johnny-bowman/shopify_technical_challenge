@@ -19,7 +19,7 @@ RSpec.describe "Warehouse index page" do
   it "searches for warehouses by location" do
     expect(page).to have_content("Richmond")
     expect(page).to have_content("Arlington")
-
+  
     fill_in :search, with: "arlington"
     click_button "Search"
 
