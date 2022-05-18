@@ -1,4 +1,11 @@
 <h1>Edit <%= @item.name%></h1>
+<% if flash[:error] %>
+  <% flash[:error].each do |error| %>
+    <strong><%= error %></strong>
+    <br>
+  <% end %>
+<% end %>
+<br>
 <%= form_with url: "/items/#{@item.id}", method: :patch, local: true do |f| %>
   <strong><%= f.label :name, "Name:" %></strong>
   <%= f.text_field :name, value: @item.name %>

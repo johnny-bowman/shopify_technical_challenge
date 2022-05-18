@@ -10,7 +10,12 @@
 
       <p><strong>Unit Price: </strong><%= number_to_currency(item.unit_price)%></p>
 
-      <%= button_to "Add Item to Warehouse at #{@warehouse.address}, #{@warehouse.city}, #{@warehouse.state}", "/admin/item_warehouses?item_id=#{item.id}&warehouse_id=#{@warehouse.id}", method: :post, local: true %>
+      <p><strong>Add Item to Inventory:</strong></p>
+      <%= form_with url: "/admin/item_warehouses?item_id=#{item.id}&warehouse_id=#{@warehouse.id}", method: :post, local: true do |f| %>
+        <%= f.label :quantity, "Quantity to Add:" %>
+        <%= f.number_field :quantity, value: "1" %>
+        <%= f.submit "Add to Warehouse at #{@warehouse.address}, #{@warehouse.city}, #{@warehouse.state}" %>
+      <% end %>
     </div>
   <% end %>
 </ul>

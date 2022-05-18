@@ -1,6 +1,13 @@
+<% if flash[:error] %>
+  <% flash[:error].each do |error| %>
+    <strong><%= error %></strong>
+    <br>
+  <% end %>
+<% end %>
+<br>
 <%= form_with url: "/items", method: :post, local: true do |f| %>
   <%= f.label :name %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, style: 'text-transform: capitalize;' %>
   <%= f.label :description %>
   <%= f.text_field :description %>
   <%= f.label :unit_price %>
