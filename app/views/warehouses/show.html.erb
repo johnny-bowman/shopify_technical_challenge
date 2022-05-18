@@ -11,7 +11,7 @@
     <ul>
       <% @warehouse.items.distinct.each do |item| %>
         <div id=<%= item.id %>>
-          <li><strong>Item Name: </strong><%= link_to item.name, "/items/#{item.id}", method: :get, local: true%></li>
+          <li><strong>Item Name: </strong><%= link_to item.name.capitalize, "/items/#{item.id}", method: :get, local: true%></li>
 
           <p><strong>Description: </strong><%= item.description %></p>
 
