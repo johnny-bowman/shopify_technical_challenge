@@ -1,6 +1,6 @@
 # README
 
-This is an inventory tracking application built with a logistics company in mind. It incorporates Items and Warehouses with CRUD functionality, ability to add items to warehouse inventory, and a search bar for items and warehouses.
+This is an inventory tracking application built with a logistics company in mind. It incorporates Items and Warehouses with CRUD functionality, the ability to add items to warehouse inventory, and a search bar for items and warehouses.
 
 Here's a look at the schema:
 
