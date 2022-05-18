@@ -21,7 +21,7 @@ RSpec.describe "Items new page" do
 
   it "flashes errors when form is filled out incorrectly" do
     visit "/items/new"
-    # save_and_open_page
+    
     fill_in "Name", with: ""
     fill_in "Description", with: ""
     fill_in "Unit price", with: ""
