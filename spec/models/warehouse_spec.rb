@@ -22,8 +22,8 @@ RSpec.describe Warehouse, type: :model do
   describe "class methods" do
     it "finds warehouses by location" do
       expect(Warehouse.search_by_location("arlington")).to eq([@wh_1])
-      expect(Warehouse.search_by_location("123 Fake st")).to eq([@wh_1])
-      expect(Warehouse.search_by_location("usa")).to eq([@wh_1, @wh_2])
+      expect(Warehouse.search_by_location("123 fAke st")).to eq([@wh_1])
+      expect(Warehouse.search_by_location("uSA")).to eq([@wh_1, @wh_2])
       expect(Warehouse.search_by_location("Richmond")).to eq([@wh_2])
     end
   end
