@@ -1,9 +1,6 @@
 <%= render "layouts/to_home" %>
 <h1>Item Index</h1>
-
-<%= button_to "Create New Item", "/items/new", method: :get, local: true%>
 <br>
-
 <ul>
   <% @items.each do |item| %>
     <div id=<%= item.id %>>
@@ -12,6 +9,8 @@
       <p><strong>Description: </strong><%= item.description %></p>
 
       <p><strong>Unit Price: </strong><%= number_to_currency(item.unit_price)%></p>
+
+      <%= button_to "Add Item to Warehouse at #{@warehouse.address}, #{@warehouse.city}, #{@warehouse.state}", "/admin/item_warehouses/new", method: :get, local: true %>
     </div>
   <% end %>
 </ul>

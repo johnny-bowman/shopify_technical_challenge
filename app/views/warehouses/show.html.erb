@@ -4,20 +4,29 @@
 
 <h2>Warehouse At: <%= @warehouse.address %>, <%= @warehouse.city %>, <%= @warehouse.state %> <%= @warehouse.postal_code %>, <%= @warehouse.country %>, </h2>
 <br>
+
 <h2>Warehouse Item Inventory: </h2>
-<div class="wh_items">
-  <ul>
-    <% @warehouse.items.each do |item| %>
-      <div id=<%= item.id %>>
-        <li><strong>Item Name: </strong><%= link_to item.name, "/items/#{item.id}", method: :get, local: true%></li>
+<% if !@warehouse.items.empty? %>
+  <div class="wh_items">
+    <ul>
+      <% @warehouse.items.each do |item| %>
+        <div id=<%= item.id %>>
+          <li><strong>Item Name: </strong><%= link_to item.name, "/items/#{item.id}", method: :get, local: true%></li>
 
-        <p><strong>Description: </strong><%= item.description %></p>
+          <p><strong>Description: </strong><%= item.description %></p>
 
-        <p><strong>Unit Price: </strong><%= item.unit_price %></p>
-      </div>
-    <% end %>
-  </ul>
-</div>
-<br>
+          <p><strong>Unit Price: </strong><%= number_to_currency(item.unit_price)%></p>
+
+          <p>Quantity in Stock: </p>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+  <br>
+<% else %>
+  <p>No Items Currently in Inventory</p>
+<% end %>
+
+<%= link_to "Add Item to Inventory", "/admin/items?id=#{@warehouse.id}", method: :get, local: true %>
 
 <%= button_to "Delete Warehouse", "/warehouses/#{@warehouse.id}", method: :delete, local: true %>
