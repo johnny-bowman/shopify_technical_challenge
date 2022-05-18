@@ -30,4 +30,16 @@ RSpec.describe "Warehouse show page" do
 
     expect(current_path).to eq("/warehouses")
   end
+
+
+  it "has button to delete warehouse" do
+    visit "/warehouses"
+    expect(page).to have_content("#{@wh.address}")
+
+    visit "/warehouses/#{@wh.id}"
+    click_button "Delete Warehouse"
+
+    expect(current_path).to eq("/warehouses")
+    expect(page).to_not have_content("#{@wh.address}")
+  end
 end
