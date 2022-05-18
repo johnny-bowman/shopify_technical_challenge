@@ -18,6 +18,7 @@ Here's a look at the schema:
 ### OR
 
 #### To run this app locally:
+* Ensure you have Ruby version 2.7.4 and Rails version: 5.2.8 installed on your machine
 * Fork and clone this repo onto your machine, and navigate to the cloned project directory
 * Run `$rails db:create` and `$rails db:migrate` in your terminal
 * Run `$rails s` in your terminal 
