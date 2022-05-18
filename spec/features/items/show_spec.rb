@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Items show page" do
+RSpec.describe "Item show page" do
   before :all do
     @wh_1 = Warehouse.create!(address: "123 Fake St", city: "Arlington", state: "VA", country: "USA", postal_code: "50890")
 
